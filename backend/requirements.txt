@@ -1,0 +1,27 @@
+fastapi
+uvicorn
+
+# Database
+sqlalchemy
+python-dotenv
+
+# Apify
+apify-client
+
+# Data processing
+pandas
+numpy
+
+# Machine Learning
+scikit-learn
+networkx
+
+# NLP
+textblob
+
+# Hugging Face (for advanced NLP)
+transformers
+torch
+
+# Visualization support (optional but useful)
+matplotlib
