@@ -1,9 +1,5 @@
 # 🔍 Social Media Analytics (SMA) Portal
-### BAI-404 · B.Tech CSE-AI · IGDTUW
-**Submitted by:** Ananya Rastogi · Roll No: 01301172022  
-**Submitted to:** Dr. Anup Girdhar
 
----
 
 <div align="center">
 
@@ -31,7 +27,6 @@
 - [Data Collection via Apify](#-data-collection-via-apify)
 - [Frontend Portal](#-frontend-portal)
 - [Screenshots](#-screenshots)
-- [Evaluation Criteria Coverage](#-evaluation-criteria-coverage)
 
 ---
 
@@ -420,37 +415,9 @@ npm run dev
 
 ---
 
-## ✅ Evaluation Criteria Coverage
-
-| Criteria | Weight | Implementation |
-|----------|--------|----------------|
-| **Implementation (All 12 Modules)** | 30% | All 12 modules implemented with real backend logic |
-| **Frontend + Dashboard** | 15% | React SPA with charts, KPIs, filters on every page |
-| **Data Collection (API usage)** | 10% | Apify integration — Twitter + Facebook scraping |
-| **ML Models & Accuracy** | 10% | TextBlob, LR (fake news), KMeans, LinearRegression, TF-IDF |
-| **Visualization** | 10% | Custom SVG donut, horizontal bar, sparkline charts |
-| **Report Quality** | 15% | Detailed Word/PDF report included |
-| **Innovation / Extra Features** | 10% | JWT auth, case management, competitor comparison, sparkline forecasts |
-
----
-
-## 📦 Final Deliverables
-
-- [x] Source Code (this repository)
-- [x] Running Application (local: FastAPI + React)
-- [x] Dataset via Apify API links
-- [x] Final Report (PDF format)
-- [x] README (this file)
-- [ ] Demo Video *(optional)*
-
----
 
 ## 📄 License
 
 This project is submitted as academic coursework for **BAI-404 Social Media Analytics** at **Indira Gandhi Delhi Technical University for Women (IGDTUW)**.
 
 ---
-
-<div align="center">
-  Made with ❤️ by <strong>Ananya Rastogi</strong> · 01301172022 · IGDTUW
-</div>
