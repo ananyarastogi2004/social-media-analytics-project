@@ -5,16 +5,70 @@ from collections import defaultdict
 def build_graph(posts):
     G = nx.Graph()
 
+    def infer_author(p):
+        # prefer explicit username field
+        raw = getattr(p, 'username', None)
+        if raw and raw != 'unknown':
+            # sanitize stored username values — they may be dicts or stringified dicts
+            try:
+                # if it's already a dict-like object
+                if isinstance(raw, dict):
+                    for k in ('screen_name', 'userName', 'username', 'name'):
+                        if raw.get(k):
+                            return str(raw.get(k))
+                # if it's a string that looks like a dict, try to parse
+                if isinstance(raw, str) and raw.strip().startswith('{'):
+                    import ast
+                    try:
+                        obj = ast.literal_eval(raw)
+                        if isinstance(obj, dict):
+                            for k in ('userName', 'screen_name', 'username', 'name'):
+                                if k in obj and obj[k]:
+                                    return str(obj[k])
+                    except Exception:
+                        pass
+                # otherwise return the raw string (could be a handle)
+                return str(raw)
+            except Exception:
+                return str(raw)
+
+        text = (p.text or "")
+        if not isinstance(text, str):
+            return f"user_{hash(str(p))%1000}"
+
+        # common patterns: RT @user:, starts with @user, 'via @user', 'by @user', '- @user' at end
+        m = None
+        import re
+        # RT @user: pattern
+        m = re.search(r"RT\s+@([A-Za-z0-9_]+)", text)
+        if m:
+            return m.group(1)
+        # starts with @user
+        m = re.match(r"^@([A-Za-z0-9_]+)", text)
+        if m:
+            return m.group(1)
+        # via @user or by @user
+        m = re.search(r"(?:via|by)\s+@([A-Za-z0-9_]+)", text)
+        if m:
+            return m.group(1)
+        # trailing - @user or — @user
+        m = re.search(r"[-—]\s*@([A-Za-z0-9_]+)\s*$", text)
+        if m:
+            return m.group(1)
+
+        # fallback hashed placeholder
+        return f"user_{hash(text)%1000}"
+
     for p in posts:
-        user = p.username if p.username != "unknown" else f"user_{hash(p.text)%1000}"
+        user = infer_author(p)
 
         G.add_node(user)
 
-        words = p.text.split()
+        words = (p.text or "").split()
 
         for w in words:
             if w.startswith("@"):
-                mentioned = w.replace("@", "")
+                mentioned = w.lstrip("@")
                 G.add_node(mentioned)
                 G.add_edge(user, mentioned)
 
