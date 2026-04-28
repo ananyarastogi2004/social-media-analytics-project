@@ -54,29 +54,29 @@ Report Generation
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        FRONTEND (React 18)                       │
+│                        FRONTEND (React 18)                      │
 │   Login → Cases → Dashboard → 12 Module Tabs → Charts/KPIs      │
 └──────────────────────────┬──────────────────────────────────────┘
                            │ HTTP / REST (JWT Bearer)
 ┌──────────────────────────▼──────────────────────────────────────┐
-│                    BACKEND (FastAPI + Python)                     │
+│                    BACKEND (FastAPI + Python)                    │
 │  /auth  /cases  /apify  /analytics/[module]                      │
-│                                                                   │
-│  Services:                                                        │
+│                                                                  │
+│  Services:                                                       │
 │   sentiment.py · trends.py · network.py · fake_news.py           │
 │   segmentation.py · ads.py · influencer.py · competitor.py       │
 │   prediction.py · recommendation.py · visualization.py           │
 │   monitoring.py · apify_service.py                               │
-└──────────────────────────┬──────────────────────────────────────┘
+└──────────────────────────┬────────────────────────────────────── ┘
                            │ SQLAlchemy ORM
 ┌──────────────────────────▼──────────────────────────────────────┐
-│                     DATABASE (SQLite)                             │
-│              users · cases · posts                                │
+│                     DATABASE (SQLite)                           │
+│              users · cases · posts                              │
 └──────────────────────────┬──────────────────────────────────────┘
                            │ apify-client
 ┌──────────────────────────▼──────────────────────────────────────┐
-│                   APIFY CLOUD SCRAPING                            │
-│   apidojo/tweet-scraper · apify/facebook-posts-scraper           │
+│                   APIFY CLOUD SCRAPING                          │
+│   apidojo/tweet-scraper · apify/facebook-posts-scraper          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
